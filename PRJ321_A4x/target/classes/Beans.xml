@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+	xmlns:context="http://www.springframework.org/schema/context"
+
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+
+	xsi:schemaLocation="
+
+        http://www.springframework.org/schema/beans
+
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+
+        http://www.springframework.org/schema/mvc
+
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+
+        http://www.springframework.org/schema/context
+
+              http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Initialization for data source -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<!--<property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
+		<property name="driverClassName"
+			value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<!--<property name="url" value="jdbc:mysql://localhost:3306/demo-spring-mvc-jdbc" 
+			/> -->
+		<property name="url"
+			value="jdbc:sqlserver://localhost:1433;databaseName=ShoppingDB" />
+		<property name="username" value="sa" />
+		<property name="password" value="123" />
+	</bean>
+
+	<!-- Definition for accountDAOImpl bean -->
+	<bean id="accountDAOImpl" class="com.nmh.dao.AccountDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+
+</beans>
